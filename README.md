@@ -33,11 +33,10 @@ override = {'EQY_FUND_CRNCY':'EUR'}
 df_bdp_override = BDP(securities, fields, override)
 ```
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| Index          | NAME           | GICS_INDUSTRY_NAME  | CRNCY_ADJ_PX_LAST |
+| -------------  |:-------------:| -----:| ----|
+| AAPL US Equity | APPLE INC        | Technology Hardware, Storage & | 157.44 |
+| C US Equity    | CITIGROUP INC      |   Banks | 54.87| 
 
 
 ## BDH
