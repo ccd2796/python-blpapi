@@ -86,7 +86,7 @@ df_bdh = BDH(securities, fields, settings)
 df_bdh.head(5)
 | Ticker          | AAPL US Equity           | AAPL US Equity  | C US Equity | C US Equity |
 | -------------:   |-------------:             | -----:           | ----:        |    ---:     |
-| Field | PX_LAST        | PX_VOLUME | PX_LAST | PX_VOLUME |
+| **Field** | **PX_LAST**        | **PX_VOLUME** | **PX_LAST** | **PX_VOLUME** |
 | date  |                |           |         |           |
 | 2021-06-01  |     124.28           |     67637118.0      |     79.76    |    15450506.0       |
 | 2021-06-02  |     125.06           |     59278862.0      |     79.86    |    15285588.0       |
