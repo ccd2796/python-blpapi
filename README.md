@@ -38,6 +38,7 @@ df_bdp
 | AAPL US Equity | APPLE INC        | Technology Hardware, Storage & | 157.44 |
 | C US Equity    | CITIGROUP INC      |   Banks | 54.87| 
 
+
 df_bdp_override
 | Index          | NAME           | GICS_INDUSTRY_NAME  | CRNCY_ADJ_PX_LAST |
 | -------------  |-------------| -----| ----|
