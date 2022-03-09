@@ -229,7 +229,7 @@ def BDS(securities, fields, override = None, debug = False):
     Returns
     -------
     df_output : DataFrame
-        Outputs a DataFrame object. Column and index names depend on securities and fields consulted.
+        If a single security is passed, output is a DataFrame. Otherwise, output is a dictionary containing DataFrames. Indices depend on securities and fields consulted.
 
     """
     if type(securities) != list or type(fields) != list:
