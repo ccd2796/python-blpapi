@@ -12,9 +12,9 @@ python -m pip install --index-url=https://bcms.bloomberg.com/pip/simple/ blpapi
 # Examples
 
 ## BDP
-+ Securities and fields must be paased as lists
-+ f
-+ Output is a df 
++ Securities and fields must be passed as lists
++ Overrides (if any) must be passed as dict
++ Output is a DataFrame
 
 
 ```python
