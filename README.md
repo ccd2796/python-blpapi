@@ -12,8 +12,8 @@ python -m pip install --index-url=https://bcms.bloomberg.com/pip/simple/ blpapi
 
 ## BDP
 + Securities and fields must be passed as lists.
-+ For a complete list of fields and overrides, use FLDS when loading a security in Bloomberg.
 + Overrides (if any) must be passed as dict.
++ For a complete list of fields and overrides, use FLDS when loading a security in Bloomberg.
 + Output is a DataFrame. Tickers as index, fields as column names.
 
 
@@ -49,8 +49,8 @@ df_bdp_override
 
 ## BDH
 + Securities and fields must be passed as lists.
-+ For a complete list of fields and overrides, use FLDS when loading a security in Bloomberg.
 + Overrides (if any) must be passed as dict.
++ For a complete list of fields and overrides, use FLDS when loading a security in Bloomberg.
 + Output is a multiindex DataFrame. Tickers as first row index, fields as second row index. Column index contains dates.
 + Complete list of settings can be found in the "BLPAPI Core Developer Guide", section "15.4. BDH(): HISTORICAL “END-OF-DAY” DATA (STATIC)"
 
@@ -97,8 +97,8 @@ df_bdh.head(5)
 
 ## BDS
 + Securities must be passed as a list. Only accepts 1 field.
-+ For a complete list of fields and overrides, use FLDS when loading a security in Bloomberg.
 + Overrides (if any) must be passed as dict.
++ For a complete list of fields and overrides, use FLDS when loading a security in Bloomberg.
 + If a single security is passed, output is a DataFrame. Otherwise, output is a dictionary containing DataFrames. Indices depend on securities and fields consulted.
 
 ```python
