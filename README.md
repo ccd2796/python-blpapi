@@ -1,6 +1,6 @@
 # python-blpapi
 
-Simple wrapper for blpapi library to Pandas. Resembles BDH, BDP and BDS Bloomberg-Excel functions. Can only be used in a logged Bloomberg Terminal. Requires blpapi.
+Simple wrapper for blpapi library to Pandas. Resembles BDH, BDP and BDS Bloomberg-Excel functions for historical data. Can only be used in a logged Bloomberg Terminal. Requires blpapi.
 
 ```python
 #To install blpapi, run in cmd
