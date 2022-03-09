@@ -12,9 +12,9 @@ python -m pip install --index-url=https://bcms.bloomberg.com/pip/simple/ blpapi
 # Examples
 
 ## BDP
-+ Securities and fields must be passed as lists
-+ Overrides (if any) must be passed as dict
-+ Output is a DataFrame
++ Securities and fields must be passed as lists.
++ Overrides (if any) must be passed as dict.
++ Output is a DataFrame.
 
 
 ```python
@@ -48,6 +48,10 @@ df_bdp_override
 
 
 ## BDH
++ Securities and fields must be passed as lists.
++ Overrides (if any) must be passed as dict.
++ Output is a multiindex DataFrame. Tickers as first row index, fields as second row index. Column index contains dates.
+
 ```python
 import datetime
 from bloomberg import BDH
@@ -90,6 +94,10 @@ df_bdh.head(5)
 
 
 ## BDS
++ Securities must be passed as list. Only accepts 1 field.
++ Overrides (if any) must be passed as dict.
++ If a single security is passed, output is a DataFrame. Otherwise, output is a dictionary containing DataFrames. Indices depend on securities and fields consulted.
+
 ```python
 import datetime
 from bloomberg import BDS
