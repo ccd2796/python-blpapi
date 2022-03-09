@@ -94,7 +94,7 @@ df_bdh.head(5)
 
 
 ## BDS
-+ Securities must be passed as list. Only accepts 1 field.
++ Securities must be passed as a list. Only accepts 1 field.
 + Overrides (if any) must be passed as dict.
 + If a single security is passed, output is a DataFrame. Otherwise, output is a dictionary containing DataFrames. Indices depend on securities and fields consulted.
 
