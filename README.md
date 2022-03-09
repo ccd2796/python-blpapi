@@ -14,7 +14,7 @@ python -m pip install --index-url=https://bcms.bloomberg.com/pip/simple/ blpapi
 ## BDP
 + Securities and fields must be passed as lists.
 + Overrides (if any) must be passed as dict.
-+ Output is a DataFrame.
++ Output is a DataFrame. Tickers as index, fields as column names.
 
 
 ```python
