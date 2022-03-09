@@ -32,11 +32,11 @@ df_bdp = BDP(securities, fields)
 override = {'EQY_FUND_CRNCY':'EUR'}
 df_bdp_override = BDP(securities, fields, override)
 ```
-df_bdp
+df_bdp  
 | Index          | NAME           | GICS_INDUSTRY_NAME  | CRNCY_ADJ_PX_LAST |
 | -------------  |-------------| -----| ----|
 | AAPL US Equity | APPLE INC        | Technology Hardware, Storage & | 157.44 |
-| C US Equity    | CITIGROUP INC      |   Banks | 54.87| 
+| C US Equity    | CITIGROUP INC      |   Banks | 54.87|  
 
 
 
