@@ -33,6 +33,13 @@ override = {'EQY_FUND_CRNCY':'EUR'}
 df_bdp_override = BDP(securities, fields, override)
 ```
 
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+
 ## BDH
 ```python
 import datetime
