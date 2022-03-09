@@ -12,6 +12,11 @@ python -m pip install --index-url=https://bcms.bloomberg.com/pip/simple/ blpapi
 # Examples
 
 ## BDP
++ Securities and fields must be paased as lists
++ f
++ Output is a df 
+
+
 ```python
 from bloomberg import BDP
 
