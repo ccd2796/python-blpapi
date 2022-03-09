@@ -118,3 +118,25 @@ date = datetime.date(2021,6,12).strftime("%Y%m%d")
 override = {'CURVE_DATE':date}
 df_bds_override = BDS(securities, fields, override) 
 ```
+df_bds['YCSW0042 Index'].head(5)
+
+|           | Tenor   | Ticker  | Ask Yield | Mid Yield | Bid Yield | Last Update |
+| :-------------   |-------------:   | -----:           | ----:        |    ---:     | ---: | :--- | 
+|0  |  1D    |   FEDL01 Index  |    0.080  |    0.080   |   0.080|  2022-03-08|
+|1  |  1W | USSO1Z BGN Curncy |     0.155   |   0.133   |   0.111 | 2022-03-08|
+|2  |  2W | USSO2Z BGN Curncy   |   0.237   |   0.230  |    0.224 | 2022-03-08|
+|3  |  3W | USSO3Z BGN Curncy   |   0.275  |    0.265  |    0.255 | 2022-03-08|
+|4  |  1M |  USSOA BGN Curncy   |   0.291 |     0.287  |    0.284|  2022-03-08|
+
+
+<br/>
+
+df_bds_override['YCSW0042 Index'].head(5)
+
+|           | Tenor   | Ticker  | Ask Yield | Mid Yield | Bid Yield | Last Update |
+| :-------------   |-------------:   | -----:           | ----:        |    ---:     | ---: | :--- | 
+|0  |  1D |      FEDL01 Index    |  0.060    |  0.060   |   0.060 | 2021-06-11|
+|1  |  1W | USSO1Z BGN Curncy    |  0.071    |  0.067   |   0.063 | 2021-06-11|
+|2  |  2W | USSO2Z BGN Curncy    |  0.073    |  0.070   |   0.067 | 2021-06-11|
+|3  |  3W | USSO3Z BGN Curncy    |  0.075     | 0.067   |   0.059 | 2021-06-11|
+|4  |  1M |  USSOA BGN Curncy    |  0.074     | 0.070   |   0.066 | 2021-06-11|
