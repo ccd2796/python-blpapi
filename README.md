@@ -53,6 +53,7 @@ df_bdp_override
 + For a complete list of fields and overrides, use FLDS when loading a security in Bloomberg.
 + Overrides (if any) must be passed as dict.
 + Output is a multiindex DataFrame. Tickers as first row index, fields as second row index. Column index contains dates.
++ Complete list of settings can be found in the "BLPAPI Core Developer Guide", section "15.4. BDH(): HISTORICAL “END-OF-DAY” DATA (STATIC)"
 
 ```python
 import datetime
