@@ -39,6 +39,7 @@ df_bdp
 | C US Equity    | CITIGROUP INC      |   Banks | 54.87| 
 
 
+
 df_bdp_override
 | Index          | NAME           | GICS_INDUSTRY_NAME  | CRNCY_ADJ_PX_LAST |
 | -------------  |-------------| -----| ----|
