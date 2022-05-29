@@ -9,6 +9,7 @@ Simple wrapper for blpapi library to Pandas. Resembles BDH, BDP and BDS Bloomber
 import blpapi
 import pandas as pd
 import numpy as np 
+import datetime
 
 def BDH(securities, fields, settings, override = None, debug = False):
     """
@@ -122,6 +123,7 @@ def BDH(securities, fields, settings, override = None, debug = False):
     df_output = df_output.sort_values(by=['date'])
     session.stop()
     return df_output
+
 
 
 def BDP(securities, fields, override = None, debug = False):
@@ -304,3 +306,119 @@ def BDS(securities, fields, override = None, debug = False):
         return df_dict[securities[0]]
     else:
         return df_dict
+
+
+def BDHIB(security, eventType, interval, startDateTime, endDateTime, gapFillInitialBar = False, settings = None, debug = False):
+    """
+    Parameters
+    ----------
+    security : String
+        Security identifier must be passed as a string.
+    eventType : String
+        Market event must be passed as a string. Can be TRADE, BID or ASK.
+    interval : int
+        Sets the lenght of each time-bar in minutes. Must be an integer between 1 and 1,440 (24 hours).
+    startDateTime, endDateTime: datetime
+        Sets the start and end points for the request. Must be passed as datetime objects.
+    gapFillInitialBar: Boolean (Default False)
+        If true, forces an initial bar on the startDateTime point with the last price available.
+    settings : Dict, optional (Default None)
+        Settings must be passed as a dict. Complete list of settings can be found in the BLPAPI Core Developer Guide, section 15.6. BDH()/BRB(): INTRADAY BAR DATA (STATIC/SUBSCRIPTION).
+    debug : Boolean, optional (Default False)
+        If True, prints the complete blpapi response message. The default is False.
+
+    Returns
+    -------
+    df_output : DataFrame
+        Outputs a DataFrame object. Index are dates and times.
+        
+        Columns are:
+            OPEN: Open price of bar
+            HIGH: Highest price of bar
+            LOW: Lowest price of bar
+            CLOSE: Last price of bar
+            TICKS: Number of ticks in bar
+            VOLUME: Volume traded in bar
+        
+    """
+    if type(security) != str or type(eventType) != str:
+        print('Security and eventType must be passed as strings.')
+        raise TypeError
+        
+    if eventType not in ["TRADE", "BID", "ASK"]:
+        print("Event type must be TRADE, BID or ASK")
+        raise ValueError
+    
+    session = blpapi.Session()
+    session.start()
+    session.openService("//blp/refdata")
+    refDataService = session.getService("//blp/refdata")
+    request = refDataService.createRequest("IntradayBarRequest")
+    
+    time_offset = datetime.datetime.now() - datetime.datetime.utcnow()
+    
+    request.set('security', security)
+    request.set('eventType', eventType)
+    request.set('interval', interval)
+    request.set('startDateTime', startDateTime - time_offset)
+    request.set('endDateTime', endDateTime - time_offset)
+    request.set('gapFillInitialBar', gapFillInitialBar)
+    
+    if settings:
+        for setting in settings:
+            request.set(setting, settings[setting])
+        
+    BAR_DATA = blpapi.Name("barData")
+    BAR_TICK_DATA = blpapi.Name("barTickData")
+    OPEN = blpapi.Name("open")
+    HIGH = blpapi.Name("high")
+    LOW = blpapi.Name("low")
+    CLOSE = blpapi.Name("close")
+    VOLUME = blpapi.Name("volume")
+    NUM_EVENTS = blpapi.Name("numEvents")
+    TIME = blpapi.Name("time")
+    
+    session.sendRequest(request)
+    
+    respuesta = []
+    # Process received events
+    a = 0
+    while(True):
+        # We provide timeout to give the chance for Ctrl+C handling:
+        ev = session.nextEvent(500)
+        for msg in ev:
+            if debug:
+                print(msg)
+            if a > 2:
+                respuesta.append(msg)
+    
+        a += 1
+        if ev.eventType() == blpapi.Event.RESPONSE:
+            # Response completly received, so we could exit
+            break
+        
+    data_dict = {}
+    for rpta in respuesta:
+        bars = rpta.getElement(BAR_DATA).getElement(BAR_TICK_DATA).values()
+        
+        for bar in bars:
+            time = bar.getElementAsDatetime(TIME) + time_offset
+            px_open = bar.getElementAsFloat(OPEN)
+            px_high = bar.getElementAsFloat(HIGH)
+            px_low = bar.getElementAsFloat(LOW)
+            px_close = bar.getElementAsFloat(CLOSE)
+            numEvents = bar.getElementAsInteger(NUM_EVENTS)
+            volume = bar.getElementAsInteger(VOLUME)
+            
+            data_dict[time] = {'OPEN': px_open,
+                               'HIGH': px_high,
+                               'LOW': px_low,
+                               'CLOSE': px_close,
+                               'TICKS': numEvents,
+                               'VOLUME': volume
+                               }
+            
+    cols = ['OPEN', 'HIGH', 'LOW', 'CLOSE', 'TICKS', 'VOLUME']
+    
+    session.stop()
+    return pd.DataFrame.from_dict(data_dict, orient='index', columns=cols)
