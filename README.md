@@ -52,7 +52,7 @@ df_bdp_override
 + Overrides (if any) must be passed as dict.
 + For a complete list of fields and overrides, use FLDS when loading a security in Bloomberg.
 + Output is a multiindex DataFrame. Tickers as first row index, fields as second row index. Column index contains dates.
-+ Complete list of settings can be found in the "BLPAPI Core Developer Guide", section "15.4. BDH(): HISTORICAL “END-OF-DAY” DATA (STATIC)"
++ Complete list of settings can be found in the "BLPAPI Core Developer Guide", section "15.4. BDH(): HISTORICAL “END-OF-DAY” DATA (STATIC)".
 
 ```python
 import datetime
@@ -152,13 +152,13 @@ df_bds_override['YCSW0042 Index'].head(5)
 + Security and event must be passed as strings. Only accepts 1 security and event.
 + Outputs a DataFrame object. Index are dates and times.
 + Columns are:
-  + OPEN: Open price of bar
-  + HIGH: Highest price of bar
-  + LOW: Lowest price of bar
-  + CLOSE: Last price of bar
-  + TICKS: Number of ticks in bar
-  + VOLUME: Volume traded in bar
-+ Settings (optional): Complete list and descripion can be found in the BLPAPI Core Developer Guide, section 15.6. BDH()/BRB(): INTRADAY BAR DATA (STATIC/SUBSCRIPTION).
+  + OPEN: Open price of bar.
+  + HIGH: Highest price of bar.
+  + LOW: Lowest price of bar.
+  + CLOSE: Last price of bar.
+  + TICKS: Number of ticks in bar.
+  + VOLUME: Volume traded in bar.
++ Settings (optional): Complete list and descripion can be found in the "BLPAPI Core Developer Guide", section "15.6. BDH()/BRB(): INTRADAY BAR DATA (STATIC/SUBSCRIPTION)".
 
 ```python
 import datetime
