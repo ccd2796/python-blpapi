@@ -143,3 +143,61 @@ df_bds_override['YCSW0042 Index'].head(5)
 |2  |  2W | USSO2Z BGN Curncy    |  0.073    |  0.070   |   0.067 | 2021-06-11|
 |3  |  3W | USSO3Z BGN Curncy    |  0.075     | 0.067   |   0.059 | 2021-06-11|
 |4  |  1M |  USSOA BGN Curncy    |  0.074     | 0.070   |   0.066 | 2021-06-11|
+
+
+
+
+
+## BDHIB: BDH Intraday Bar
++ Security and event must be passed as strings. Only accepts 1 security and event.
++ Outputs a DataFrame object. Index are dates and times.
++ Columns are:
+  + OPEN: Open price of bar
+  + HIGH: Highest price of bar
+  + LOW: Lowest price of bar
+  + CLOSE: Last price of bar
+  + TICKS: Number of ticks in bar
+  + VOLUME: Volume traded in bar
++ Settings (optional): Complete list and descripion can be found in the BLPAPI Core Developer Guide, section 15.6. BDH()/BRB(): INTRADAY BAR DATA (STATIC/SUBSCRIPTION).
+
+```python
+import datetime
+from bloomberg import BDHIB
+
+#Security and Event must be passed as strings.
+security = "USDPEN Curncy"
+
+#Event can be TRADE, BID or ASK.
+eventType = "TRADE"
+
+#lenght of each time-bar in minutes. Must be an integer between 1 and 1,440 (24 hours).
+interval = 5
+
+#Start and end points must be passed as datetime objects.
+startDateTime = datetime.datetime(2022, 5, 25, 0, 0, 0)
+endDateTime = datetime.datetime(2022, 5, 28, 0, 0, 0)
+
+#gapFillInitialBar (optional): If true, forces an initial bar on startDateTime with last price avaiable. Default is False.
+gapFillInitialBar = True
+
+#settings (optional) must be passed as dict. Complete list and descripion of settings can be found in the BLPAPI Core Developer Guide,
+#section 15.6. BDH()/BRB(): INTRADAY BAR DATA (STATIC/SUBSCRIPTION).
+# settings = {'adjustmentSplit':True,
+#             'adjustmentAbnormal':True,
+#             'adjustmentNormal': True,
+#             'adjustmentFollowDPDF': True}
+
+df_bdhib = BDHIB(security, eventType, interval, startDateTime, endDateTime, gapFillInitialBar)
+```
+df_bdhib.head(5)
+
+|                    |  OPEN  |  HIGH  |   LOW  |  CLOSE | TICKS | VOLUME |
+| :----------------- |  ----: | ----:  | ----:  |  ---:  | ---: | ---: | 
+|2022-05-25 00:00:00 | 3.7039 | 3.7039 | 3.7039 | 3.7039 |  0  |  0  |
+|2022-05-25 09:05:00 | 3.7075 | 3.7075 | 3.7030 | 3.7030 |  5  |  0  |
+|2022-05-25 09:10:00 | 3.7018 | 3.7051 | 3.7000 | 3.7025 |  12 |  0  |
+|2022-05-25 09:15:00 | 3.7025 | 3.7025 | 3.7001 | 3.7001 |  3  |  0  |
+|2022-05-25 09:20:00 | 3.7001 | 3.7026 | 3.6986 | 3.7026 |  11 |  0  |
+
+
+
